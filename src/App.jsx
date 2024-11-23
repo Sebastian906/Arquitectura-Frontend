@@ -4,6 +4,7 @@ import Unidad from './components/Unidad'
 import MemoriaP from './components/MemoriaP'
 import MDatos from './components/MDatos'
 import Instrucciones from './components/Instrucciones'
+import Boton from './components/Boton'
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Instrucciones />
         </div>
       </div>
+      <Boton/>
     </div>
   );
 }
