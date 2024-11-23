@@ -30,10 +30,10 @@ const Unidad = () => {
                                 onChange={(e) => setUnidad2(e.target.value)}
                             />
                         </div>
-                        <div className="flex mt-2">
+                        <div className="flex flex-col items-center mt-4">
                             <input
                                 type="text"
-                                className="w-1/2 p-2 border border-gray-400 rounded-lg mr-2"
+                                className="w-1/2 p-2 border border-gray-400 rounded-lg mb-2"
                                 value={unidad3}
                                 onChange={(e) => setUnidad3(e.target.value)}
                             />
