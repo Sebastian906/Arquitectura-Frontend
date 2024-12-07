@@ -33,13 +33,11 @@ const App = () => {
         {/* Segunda columna */}
         <div className="flex-1">
           <MDatos />
-        </div>
-        <div>
-          <Buses />
+          <Instrucciones />
         </div>
         {/* Tercera columna */}
         <div className="flex-1">
-          <Instrucciones />
+          <Buses />
           {/* Componente DispositivosIO */}
           <DispositivosIO
             obtenerEntrada={obtenerEntrada}
