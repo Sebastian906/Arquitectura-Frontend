@@ -29,6 +29,12 @@ const App = () => {
         {/* Primera columna */}
         <div className="flex-1 flex flex-col gap-4">
           <Unidad />
+          {/* Componente DispositivosIO */}
+          <DispositivosIO
+            obtenerEntrada={obtenerEntrada}
+            obtenerSalida={obtenerSalida}
+            agregarDispositivo={agregarDispositivo}
+          />
           <MemoriaP />
         </div>
         {/* Segunda columna */}
@@ -39,12 +45,6 @@ const App = () => {
         {/* Tercera columna */}
         <div className="flex-1 flex flex-col gap-4">
           <Buses />
-          {/* Componente DispositivosIO */}
-          <DispositivosIO
-            obtenerEntrada={obtenerEntrada}
-            obtenerSalida={obtenerSalida}
-            agregarDispositivo={agregarDispositivo}
-          />
           <MemoriaRAM />
         </div>
       </div>

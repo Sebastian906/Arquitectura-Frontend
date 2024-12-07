@@ -19,7 +19,7 @@ const DispositivosIO = ({ obtenerEntrada, obtenerSalida, agregarDispositivo }) =
     };
 
     return (
-        <div className="bg-gray-100 p-4 shadow-md rounded-lg">
+        <div className="p-4 shadow-md rounded-lg">
             <h2 className="text-lg font-bold mb-4 text-slate-800">
                 Dispositivos de Entrada y Salida
             </h2>
