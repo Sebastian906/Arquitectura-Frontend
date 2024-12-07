@@ -6,6 +6,7 @@ import MDatos from './components/MDatos'
 import Instrucciones from './components/Instrucciones'
 import Boton from './components/Boton'
 import Tiempo from './components/Tiempo'
+import Buses from './components/Buses'
 
 const App = () => {
   return (
@@ -20,6 +21,9 @@ const App = () => {
         {/* Segunda columna */}
         <div className="flex-1">
           <MDatos />
+        </div>
+        <div className='flex-1'>
+          <Buses />
         </div>
         {/* Tercera columna */}
         <div className="flex-1">
