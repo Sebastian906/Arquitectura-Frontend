@@ -8,6 +8,7 @@ import Boton from './components/Boton'
 import Tiempo from './components/Tiempo'
 import Buses from './components/Buses'
 import DispositivosIO from './components/DispositivosIO'
+import MemoriaRAM from './components/MemoriaRAM'
 
 const App = () => {
 
@@ -44,6 +45,7 @@ const App = () => {
             obtenerSalida={obtenerSalida}
             agregarDispositivo={agregarDispositivo}
           />
+          <MemoriaRAM />
         </div>
       </div>
       {/* Contenedor para Tiempo y Boton */}
