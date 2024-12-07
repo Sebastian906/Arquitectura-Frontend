@@ -31,12 +31,12 @@ const App = () => {
           <MemoriaP />
         </div>
         {/* Segunda columna */}
-        <div className="flex-1">
+        <div className="flex-1 flex flex-col gap-4">
           <MDatos />
           <Instrucciones />
         </div>
         {/* Tercera columna */}
-        <div className="flex-1">
+        <div className="flex-1 flex flex-col gap-4">
           <Buses />
           {/* Componente DispositivosIO */}
           <DispositivosIO
