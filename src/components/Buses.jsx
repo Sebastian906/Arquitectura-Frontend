@@ -27,7 +27,7 @@ const Buses = () => {
         <div className="buses-container space-y-4">
             {/* Bus de Datos */}
             <div className="bus datos border p-4 rounded shadow-md">
-                <h2 className="text-lg font-bold">Bus de Datos</h2>
+                <h2 className="text-lg font-bold text-slate-800">Bus de Datos</h2>
                 <p>{busDatos}</p>
                 <input
                     type="text"
@@ -40,7 +40,7 @@ const Buses = () => {
 
             {/* Bus de Direcciones */}
             <div className="bus direcciones border p-4 rounded shadow-md">
-                <h2 className="text-lg font-bold">Bus de Direcciones</h2>
+                <h2 className="text-lg font-bold text-slate-800">Bus de Direcciones</h2>
                 <p>{busDirecciones}</p>
                 <input
                     type="text"
@@ -53,7 +53,7 @@ const Buses = () => {
 
             {/* Bus de Control */}
             <div className="bus control border p-4 rounded shadow-md">
-                <h2 className="text-lg font-bold">Bus de Control</h2>
+                <h2 className="text-lg font-bold text-slate-800">Bus de Control</h2>
                 <p>{busControl}</p>
                 <input
                     type="text"
