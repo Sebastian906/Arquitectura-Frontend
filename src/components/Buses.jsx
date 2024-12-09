@@ -43,7 +43,7 @@ const Buses = () => {
     }, []);
 
     return (
-        <div className="buses-container space-y-4">
+        <div className="buses-container space-y-4 max-w-4xl p-4 border border-gray-400 rounded-lg">
             <h2 className="text-lg font-bold mb-4 text-slate-800 text-center">Buses del Sistema</h2>
             <div className="bus datos border p-4 rounded shadow-md">
                 <h3 className="text-lg font-bold text-slate-800">Bus de Datos</h3>

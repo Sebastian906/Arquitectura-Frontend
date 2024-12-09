@@ -46,7 +46,7 @@ const MemoriaRAM = () => {
     }, []);
 
     return (
-        <div className="p-4 shadow-md rounded-lg">
+        <div className="max-w-4xl mx-auto p-4 border border-gray-400 rounded-lg">
             <h2 className="text-lg font-bold mb-4 text-slate-800">Memoria RAM</h2>
             <div className="overflow-y-auto max-h-64 w-full">
                 <table className="table-auto border-collapse border border-gray-400 w-full">
