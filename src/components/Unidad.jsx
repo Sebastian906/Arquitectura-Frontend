@@ -11,8 +11,14 @@ const Unidad = () => {
         mbr: ''
     });
 
+    const [cicloActual, setCicloActual] = useState('');
+
+    const validarRegistro = (registro) => {
+        return !isNaN(parseInt(registro)) ? parseInt(registro) : 0;  // Validación de números
+    };
+
     const fetch = useCallback(() => {
-        // Capturar instrucción de memoria RAM
+        setCicloActual('Fetch');
         setRegistros(prev => ({
             ...prev, 
             pc: prev.pc + 1,
@@ -22,7 +28,7 @@ const Unidad = () => {
     }, []);
 
     const decode = useCallback(() => {
-        // Decodificar instrucción en IR
+        setCicloActual('Decode');
         setRegistros(prev => ({
             ...prev,
             uc: 'Decodificando instrucción'
@@ -30,16 +36,18 @@ const Unidad = () => {
     }, []);
 
     const execute = useCallback(() => {
-        // Ejecutar instrucción 
+        setCicloActual('Execute');
+        const resultado = parseInt(registros.br || 0) + parseInt(registros.mbr || 0);  // Simulación de suma en ALU
         setRegistros(prev => ({
             ...prev,
-            alu: 'Procesando operación'
+            alu: `Resultado: ${resultado}`,
+            br: resultado.toString()  // Actualizando BR con el resultado
         }));
-    }, []);
+    }, [registros.br, registros.mbr]);
 
     const processCycle = () => {
         fetch();
-        decode(); 
+        decode();
         execute();
     };
 
@@ -59,7 +67,7 @@ const Unidad = () => {
                             placeholder="Operación"
                             className="absolute bottom-[-20px] left-[50%] transform -translate-x-1/2 p-2 text-sm border rounded-md w-36 mt-4"
                             value={registros.alu}
-                            onChange={(e) => setRegistros(e.target.value)}
+                            onChange={(e) => setRegistros(prev => ({ ...prev, alu: e.target.value }))}
                         />
                     </div>
 
@@ -71,7 +79,7 @@ const Unidad = () => {
                                 type="text"
                                 className="p-2 border rounded-lg w-24 text-sm"
                                 value={registros.br}
-                                onChange={(e) => setRegistros(e.target.value)}
+                                onChange={(e) => setRegistros(prev => ({ ...prev, br: validarRegistro(e.target.value) }))}
                             />
                         </div>
                         <div className="flex flex-col items-center">
@@ -80,7 +88,7 @@ const Unidad = () => {
                                 type="text"
                                 className="p-2 border rounded-lg w-24 text-sm"
                                 value={registros.pc}
-                                onChange={(e) => setRegistros(e.target.value)}
+                                onChange={(e) => setRegistros(prev => ({ ...prev, pc: validarRegistro(e.target.value) }))}
                             />
                         </div>
                     </div>
@@ -94,7 +102,7 @@ const Unidad = () => {
                             type="text"
                             className="p-2 border rounded-lg w-full text-sm"
                             value={registros.ir}
-                            onChange={(e) => setRegistros(e.target.value)}
+                            onChange={(e) => setRegistros(prev => ({ ...prev, ir: e.target.value }))}
                         />
                     </div>
                     <div className="flex flex-col">
@@ -103,7 +111,7 @@ const Unidad = () => {
                             type="text"
                             className="p-2 border rounded-lg w-full text-sm"
                             value={registros.uc}
-                            onChange={(e) => setRegistros(e.target.value)}
+                            onChange={(e) => setRegistros(prev => ({ ...prev, uc: e.target.value }))}
                         />
                     </div>
                     <div className="flex flex-col">
@@ -112,7 +120,7 @@ const Unidad = () => {
                             type="text"
                             className="p-2 border rounded-lg w-full text-sm"
                             value={registros.mar}
-                            onChange={(e) => setRegistros(e.target.value)}
+                            onChange={(e) => setRegistros(prev => ({ ...prev, mar: e.target.value }))}
                         />
                     </div>
                     <div className="flex flex-col">
@@ -121,12 +129,20 @@ const Unidad = () => {
                             type="text"
                             className="p-2 border rounded-lg w-full text-sm"
                             value={registros.mbr}
-                            onChange={(e) => setRegistros(e.target.value)}
+                            onChange={(e) => setRegistros(prev => ({ ...prev, mbr: e.target.value }))}
                         />
                     </div>
                 </div>
+            </div>
+
+            {/* Mostrar estado del ciclo de instrucción */}
+            <div className="mt-4 text-center">
+                <p className="text-lg font-semibold">Ciclo Actual: {cicloActual}</p>
+            </div>
+
+            <div className="flex justify-center mt-6">
                 <button 
-                    className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                     onClick={processCycle}>
                     Ejecutar Ciclo de Instrucción
                 </button>
