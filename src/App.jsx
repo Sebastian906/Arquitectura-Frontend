@@ -1,14 +1,14 @@
 import React from 'react'
 import Titulo from './components/Titulo'
 import Unidad from './components/Unidad'
+import DispositivosIO from './components/DispositivosIO'
 import MemoriaP from './components/MemoriaP'
 import MDatos from './components/MDatos'
 import Instrucciones from './components/Instrucciones'
+import Buses from './components/Buses'
+import MemoriaRAM from './components/MemoriaRAM'
 import Boton from './components/Boton'
 import Tiempo from './components/Tiempo'
-import Buses from './components/Buses'
-import DispositivosIO from './components/DispositivosIO'
-import MemoriaRAM from './components/MemoriaRAM'
 
 const App = () => {
 

@@ -1,13 +1,47 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 const Unidad = () => {
-    const [alu, setAlu] = useState(''); // ALU: Realiza operaciones aritméticas y lógicas
-    const [br, setBr] = useState('');
-    const [pc, setPc] = useState('');
-    const [ir, setIr] = useState('');
-    const [uc, setUc] = useState('');
-    const [mar, setMar] = useState('');
-    const [mbr, setMbr] = useState('');
+    const [registros, setRegistros] = useState({
+        alu: '', 
+        br: '', 
+        pc: 0, 
+        ir: '', 
+        uc: '', 
+        mar: '', 
+        mbr: ''
+    });
+
+    const fetch = useCallback(() => {
+        // Capturar instrucción de memoria RAM
+        setRegistros(prev => ({
+            ...prev, 
+            pc: prev.pc + 1,
+            mar: `Dirección ${prev.pc}`,
+            ir: `Instrucción leída`
+        }));
+    }, []);
+
+    const decode = useCallback(() => {
+        // Decodificar instrucción en IR
+        setRegistros(prev => ({
+            ...prev,
+            uc: 'Decodificando instrucción'
+        }));
+    }, []);
+
+    const execute = useCallback(() => {
+        // Ejecutar instrucción 
+        setRegistros(prev => ({
+            ...prev,
+            alu: 'Procesando operación'
+        }));
+    }, []);
+
+    const processCycle = () => {
+        fetch();
+        decode(); 
+        execute();
+    };
 
     return (
         <div className="max-w-4xl mx-auto p-4 border border-gray-400 rounded-lg">
@@ -24,8 +58,8 @@ const Unidad = () => {
                             type="text"
                             placeholder="Operación"
                             className="absolute bottom-[-20px] left-[50%] transform -translate-x-1/2 p-2 text-sm border rounded-md w-36 mt-4"
-                            value={alu}
-                            onChange={(e) => setAlu(e.target.value)}
+                            value={registros.alu}
+                            onChange={(e) => setRegistros(e.target.value)}
                         />
                     </div>
 
@@ -36,8 +70,8 @@ const Unidad = () => {
                             <input
                                 type="text"
                                 className="p-2 border rounded-lg w-24 text-sm"
-                                value={br}
-                                onChange={(e) => setBr(e.target.value)}
+                                value={registros.br}
+                                onChange={(e) => setRegistros(e.target.value)}
                             />
                         </div>
                         <div className="flex flex-col items-center">
@@ -45,8 +79,8 @@ const Unidad = () => {
                             <input
                                 type="text"
                                 className="p-2 border rounded-lg w-24 text-sm"
-                                value={pc}
-                                onChange={(e) => setPc(e.target.value)}
+                                value={registros.pc}
+                                onChange={(e) => setRegistros(e.target.value)}
                             />
                         </div>
                     </div>
@@ -59,8 +93,8 @@ const Unidad = () => {
                         <input
                             type="text"
                             className="p-2 border rounded-lg w-full text-sm"
-                            value={ir}
-                            onChange={(e) => setIr(e.target.value)}
+                            value={registros.ir}
+                            onChange={(e) => setRegistros(e.target.value)}
                         />
                     </div>
                     <div className="flex flex-col">
@@ -68,8 +102,8 @@ const Unidad = () => {
                         <input
                             type="text"
                             className="p-2 border rounded-lg w-full text-sm"
-                            value={uc}
-                            onChange={(e) => setUc(e.target.value)}
+                            value={registros.uc}
+                            onChange={(e) => setRegistros(e.target.value)}
                         />
                     </div>
                     <div className="flex flex-col">
@@ -77,8 +111,8 @@ const Unidad = () => {
                         <input
                             type="text"
                             className="p-2 border rounded-lg w-full text-sm"
-                            value={mar}
-                            onChange={(e) => setMar(e.target.value)}
+                            value={registros.mar}
+                            onChange={(e) => setRegistros(e.target.value)}
                         />
                     </div>
                     <div className="flex flex-col">
@@ -86,11 +120,16 @@ const Unidad = () => {
                         <input
                             type="text"
                             className="p-2 border rounded-lg w-full text-sm"
-                            value={mbr}
-                            onChange={(e) => setMbr(e.target.value)}
+                            value={registros.mbr}
+                            onChange={(e) => setRegistros(e.target.value)}
                         />
                     </div>
                 </div>
+                <button 
+                    className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                    onClick={processCycle}>
+                    Ejecutar Ciclo de Instrucción
+                </button>
             </div>
         </div>
     );
